@@ -161,7 +161,10 @@ class Vote(models.Model):
     user=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     poll=models.ForeignKey(Poll,on_delete=models.CASCADE)
     option=models.ForeignKey(Option,on_delete=models.CASCADE)
-
+    
+    def __str__(self):
+        return f"{self.user} voted for {self.option}"
+    
     class Meta:
         unique_together=['user','poll']
 # Create your models here.

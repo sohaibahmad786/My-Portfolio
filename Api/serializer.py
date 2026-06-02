@@ -129,11 +129,27 @@ class Poll_serializer(serializers.ModelSerializer):
         extra_kwargs={
            'created_by':{'read_only':True}
         }
+
+        def validate_question(self,value):
+            if len(value)<10:
+                raise serializers.ValidationError('Question must contain at least 10 characters')
+
 class Option_serializer(serializers.ModelSerializer):
     class Meta:
         model=Option
         fields='__all__'
+
 class Vote_serializer(serializers.ModelSerializer):
     class Meta:
         model=Vote
         fields='__all__'
+        extra_kwargs={
+            'user':{'read_only':True}
+        }
+
+        def validate(self,data):
+            poll=data['poll']
+            option=data['option']
+
+            if option.poll != poll:
+                raise serializers.ValidationError('Selected option does not belong to this post')

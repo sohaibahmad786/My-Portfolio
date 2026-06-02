@@ -300,8 +300,8 @@ class VoteView(ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         user=request.user
-        poll_id=Poll.objects.get('poll')
-        option_id=Option.objects.get('option')
+        poll_id=request.data.get('poll')
+        option_id=request.data.get('option')
 
         already_created=Vote.objects.filter(
             user=user,
