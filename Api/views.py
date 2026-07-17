@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import jwt
-import stripe
+# import stripe
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.http import HttpResponse
@@ -21,7 +21,7 @@ from datetime import datetime, timedelta
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.db.models import Q
 from rest_framework .viewsets import ModelViewSet
-import PyPDF2
+# import PyPDF2
 
 
 from .models import Register
@@ -54,6 +54,8 @@ from .models import Employee
 from .serializer import Employee_serializer
 from .models import Poll,Option,Vote
 from .serializer import Poll_serializer,Option_serializer,Vote_serializer
+from .models import Contact
+from .serializer import Contact_serializer
 
     
 class Register_view(generics.ListCreateAPIView):
@@ -162,7 +164,7 @@ class NotificationView(ModelViewSet):
     def get_queryset(self):
         return Notification.objects.filter(user=self.request.user)
 
-stripe.api_key=settings.STRIPE_SECRET_KEY
+# stripe.api_key=settings.STRIPE_SECRET_KEY
 
 class OrderCreateView(APIView):
     permission_classes=[IsAuthenticated]
@@ -324,6 +326,11 @@ class VoteView(ModelViewSet):
         return Response({
             'message':'Vote Submitted Successfully'
         })
+
+
+class ContactView(ModelViewSet):
+    queryset=Contact.objects.all()
+    serializer_class=Contact_serializer
 
 # Create your views here.
 

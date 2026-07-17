@@ -18,7 +18,9 @@ from .models import Employee
 from .models import Poll
 from .models import Option
 from .models import Vote
+from .models import Contact
 
+admin.site.register(Contact)
 admin.site.register(Vote)
 admin.site.register(Option)
 admin.site.register(Poll)

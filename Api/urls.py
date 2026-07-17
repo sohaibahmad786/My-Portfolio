@@ -16,6 +16,7 @@ from .views import ResumeView
 from .views import image_View
 from .views import EmployeeView,EmployeeDetail
 from .views import PollView,OptionView,VoteView
+from .views import ContactView
 
 router=DefaultRouter()
 router.register('person',PersonViewSet)
@@ -25,12 +26,14 @@ router.register('notification',NotificationView)
 router.register('poll',PollView)
 router.register('option',OptionView)
 router.register('vote',VoteView)
+router.register('contact',ContactView)
 
 urlpatterns = [
    path('register/',Register_view.as_view()),
    path('register/<int:pk>/',Register_detail.as_view()),
    path('login/',TokenObtainPairView.as_view()),
    path('login/refresh/',TokenRefreshView.as_view()),
+   
    path('search/',Search_view.as_view()),
    path('student/',Studentlist.as_view()),
    path('student/<int:pk>/',Studentdetail.as_view()),

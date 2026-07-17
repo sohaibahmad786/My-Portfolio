@@ -16,6 +16,7 @@ from .models import Resume
 from .models import Images
 from .models import Employee
 from .models import Poll,Option,Vote
+from .models import Contact
         
 
 class Register_serializer(serializers.ModelSerializer):
@@ -153,3 +154,9 @@ class Vote_serializer(serializers.ModelSerializer):
 
             if option.poll != poll:
                 raise serializers.ValidationError('Selected option does not belong to this post')
+            
+
+class Contact_serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Contact
+        fields='__all__'

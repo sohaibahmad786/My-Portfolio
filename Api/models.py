@@ -167,4 +167,12 @@ class Vote(models.Model):
     
     class Meta:
         unique_together=['user','poll']
+
+class Contact(models.Model):
+    Name=models.CharField(null=False)
+    Email=models.EmailField(null=False)
+    Message=models.TextField(max_length=300)
+
+    def __str__(self):
+        return self.Name
 # Create your models here.
